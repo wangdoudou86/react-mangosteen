@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "dev": "vite",
     "build": "tsc && vite build --base=/react-mangosteen-1-preview/",
     "preview": "vite preview"
