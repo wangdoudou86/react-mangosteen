@@ -1,6 +1,10 @@
 {
   "extends": "@antfu",
   "rules": {
-    "@typescript-eslint/comma-dangle": "off"
-  }
+    "@typescript-eslint/comma-dangle": "off",
+    "unused-imports/no-unused-imports": "off"
+  },
+  "plugins": [
+    "unused-imports"
+  ]
 }
