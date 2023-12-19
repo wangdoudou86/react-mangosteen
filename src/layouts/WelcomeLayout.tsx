@@ -15,7 +15,7 @@ export const WelcomeLayout: React.FC = () => {
   const location = useLocation() // 获取当前地址栏的信息
   const outlet = useOutlet() // 当前路径对应的outlet
   map.current[location.pathname] = outlet
-  const [extraStyle, setExtraStyle] = useState({ position: 'relative' })
+  const [extraStyle, setExtraStyle] = useState<{ position: 'relative' | 'absolute' }>({ position: 'relative' })
   const transitions = useTransition(location.pathname, {
     // 进入状态
     from: { transform: location.pathname === '/welcome/1' ? 'translateX(0%)' : 'translateX(100%)' },
@@ -39,11 +39,13 @@ export const WelcomeLayout: React.FC = () => {
     </header>
     <main shrink-1 grow-1 relative >
       {transitions((style, pathname) =>
-        <animated.div key={pathname} style={{ ...style, ...extraStyle }} w="100%" h="100%" p-16px flex>
+      <div style={extraStyle} w="100%" h="100%">
+        <animated.div key={pathname} style={style} w="100%" h="100%" p-16px flex>
           <div grow-1 bg-white flex justify-center items-center rounded-8px>
             {map.current[pathname]}
           </div>
         </animated.div>
+      </div>
       )}
     </main>
     <footer shrink-0 text-center text-24px text-white grid grid-cols-3 grid-rows-1>
