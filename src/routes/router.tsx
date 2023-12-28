@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <Home />
+    element: <Home title="我是首页" />
   },
   {
     path: '/welcome',
