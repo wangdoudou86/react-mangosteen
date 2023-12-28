@@ -1,19 +1,32 @@
 import useSWR from 'swr'
+import { Navigate } from 'react-router-dom'
 import p from '../assets/images/pig.svg'
 import add from '../assets/icons/add.svg'
 import { ajax } from '../lib/ajax'
 
 export const Home: React.FC = () => {
-  const { data: meData, error: meError } = useSWR('/api/v1/me', (path) => {
-    return ajax.get(path)
+  const { data: meData, error: meError } = useSWR('/api/v1/me', async (path) => {
+    return (await ajax.get<Resource<User>>(path)).data.resource
   })
-  const { data: itemsData, error: itemsError } = useSWR(meData ? '/api/v1/items' : null, (path) => {
-    return ajax.get(path)
+  const { data: itemsData, error: itemsError } = useSWR(meData ? '/api/v1/items' : null, async (path) => {
+    return (await ajax.get<Resources<Item>>(path)).data
   })
   console.log(meData, 'meData')
   console.log(meError, 'meError')
   console.log(itemsData, 'itemsData')
   console.log(itemsError, 'itemsError')
+
+  const isLoadingMe = !meData && !meError
+  const isLoadingItems = meData && !itemsData && !itemsError
+
+  if (isLoadingMe || isLoadingItems) {
+    return <div>加载中......</div>
+  }
+
+  // itemsData?.resources?.[0] 等同于判断 itemsData?.resources?.length && itemsData?.resources.length > 0
+  if (itemsData?.resources?.[0]) {
+    return <Navigate to="/items" />
+  }
 
   return <div>
     <div flex justify-center items-center>
