@@ -26,7 +26,7 @@ export const Home: React.FC<Props> = (props) => {
   const isLoadingItems = meData && !itemsData && !itemsError
 
   if (isLoadingMe || isLoadingItems) {
-    return <Loading />
+    return <Loading className="h-screen" />
   }
 
   // itemsData?.resources?.[0] 等同于判断 itemsData?.resources?.length && itemsData?.resources.length > 0

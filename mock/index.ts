@@ -3,7 +3,7 @@ export default [
   {
     url: '/api/v1/me',
     method: 'get',
-    // timeout: 1000, // 设置多长时间后返回结果，目前设置1s是为了看lodaing的效果
+    timeout: 10000, // 设置多长时间后返回结果，目前设置1s是为了看lodaing的效果
     response: (): Resource<User> => {
       return {
         resource: {
@@ -18,7 +18,7 @@ export default [
   {
     url: '/api/v1/items',
     method: 'get',
-    // timeout: 1000,
+    timeout: 10000,
     response: (): Resources<Item> => {
       return {
         resources: [],
