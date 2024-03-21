@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { AddItemFloatButton } from '../../components/AddItemFloatButton'
-import { TimeRangePicker } from '../../components/TimeRangePicker'
+import { TimeRangePicker } from '../../components/TimeRangePicker/TimeRangePicker'
 import { Topnav } from '../../components/Topnav'
+import type { TimeRange } from '../../components/TimeRangePicker/TimeRangePicker'
 import { ItemsList } from './components/ItemsList'
 import { ItemsSummary } from './components/ItemsSummary'
 
@@ -10,11 +12,12 @@ const Div = styled.div`
 `
 
 export const ItemsPage: React.FC = () => {
+  const [timeRange, setTimeRange] = useState<TimeRange>('thisMonth')
   return (
     <div>
       <Div>
         <Topnav />
-        <TimeRangePicker />
+        <TimeRangePicker selected={timeRange} onSelected={setTimeRange} />
       </Div>
       <ItemsSummary />
       <ItemsList />
