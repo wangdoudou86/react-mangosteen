@@ -8,6 +8,7 @@ interface Options {
   id?: string
   inputFolder?: string
   inline?: boolean
+  noOptimizeList?: string[]
 }
 export function svgsprites(options: Options = {}): Plugin {
   const virtualModuleId = `virtual:svgsprites${options.id ? `-${options.id}` : ''}`
@@ -24,15 +25,17 @@ export function svgsprites(options: Options = {}): Plugin {
       const filepath = path.join(iconsDir, file)
       const svgId = path.parse(file).name
       const code = fs.readFileSync(filepath, { encoding: 'utf-8' })
-      sprites.add(svgId, code)
+      const symbol = options.noOptimizeList?.includes(svgId)
+        ? code
+        : optimize(code, {
+          plugins: [
+            'cleanupAttrs', 'removeDoctype', 'removeComments', 'removeTitle', 'removeDesc', 'removeEmptyAttrs',
+            { name: 'removeAttrs', params: { attrs: '(data-name|fill)' } },
+          ],
+        }).data
+      sprites.add(svgId, symbol)
     }
-    const { data: code } = optimize(sprites.toString({ inline }), {
-      plugins: [
-        'cleanupAttrs', 'removeDoctype', 'removeComments', 'removeTitle', 'removeDesc', 'removeEmptyAttrs',
-        { name: 'removeAttrs', params: { attrs: '(data-name|fill)' } },
-      ],
-    })
-    return code
+    return sprites.toString({ inline })
   }
   const handleFileCreationOrUpdate = (file: string, server: ViteDevServer) => {
     if (!file.includes(inputFolder)) {

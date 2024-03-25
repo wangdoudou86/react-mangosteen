@@ -4,7 +4,7 @@ import { AddItemFloatButton } from '../../components/AddItemFloatButton'
 import { TimeRangePicker } from '../../components/TimeRangePicker/TimeRangePicker'
 import { TopNav } from '../../components/TopNav'
 import type { TimeRange } from '../../components/TimeRangePicker/TimeRangePicker'
-import { TopMenu } from '../../components/TopMenu';
+import { TopMenu } from '../../components/TopMenu/TopMenu';
 import { useMenuStore } from '../../stores/useMenuStore'
 import { ItemsList } from './components/ItemsList'
 import { ItemsSummary } from './components/ItemsSummary'

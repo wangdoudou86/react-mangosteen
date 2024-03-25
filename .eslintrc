@@ -15,7 +15,8 @@
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/semi": "off",
     "no-console": "off",
-    "@typescript-eslint/brace-style": "off"
+    "@typescript-eslint/brace-style": "off",
+    "unused-imports/no-unused-imports": "off"
   },
   "plugins": [
     "unused-imports"
