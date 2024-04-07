@@ -5,13 +5,13 @@ type Rule<T> = {
   key: keyof T
   message: string
 } & (
-    { type: 'required' } |
-    { type: 'chinese' } |
-    { type: 'equalField'; field: keyof T } |
-    { type: 'pattern'; regex: RegExp } |
-    { type: 'notEqual'; value: JSONValue } |
-    { type: 'length'; min?: number; max?: number }
-  )
+  { type: 'required' } |
+  { type: 'chinese' } |
+  { type: 'equalField'; field: keyof T } |
+  { type: 'pattern'; regex: RegExp } |
+  { type: 'notEqual'; value: JSONValue } |
+  { type: 'length'; min?: number; max?: number }
+)
 type Rules<T> = Rule<T>[]
 
 type FormError<T> = {
