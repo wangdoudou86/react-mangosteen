@@ -1,13 +1,16 @@
 import { create } from "zustand";
+import type { FormError } from "../lib/validate";
 
-interface Data {
+type Data = {
   email: string
   code: string
 }
 
-interface SignIn {
+type SignIn = {
   data: Data
   setData: (data: Partial<Data>) => void
+  error: FormError<Data>
+  setError: (error: Partial<FormError<Data>>) => void
 }
 
 export const useSignInStore = create<SignIn>((set, get) => (
@@ -18,11 +21,25 @@ export const useSignInStore = create<SignIn>((set, get) => (
     },
     setData: (data: Partial<Data>) => {
       set(state => ({
+        ...state,
         data: {
           ...state.data,
           ...data
         }
       }))
     },
+    error: {
+      email: [],
+      code: []
+    },
+    setError: (error: Partial<FormError<Data>>) => {
+      set(state => ({
+        ...state,
+        error: {
+          ...state.error,
+          ...error
+        }
+      }))
+    }
   }
 ))

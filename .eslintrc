@@ -17,7 +17,8 @@
     "no-console": "off",
     "@typescript-eslint/brace-style": "off",
     "unused-imports/no-unused-imports": "off",
-    "@typescript-eslint/no-unused-imports": "off"
+    "@typescript-eslint/no-unused-imports": "off",
+    "@typescript-eslint/consistent-type-definitions": "off"
   },
   "plugins": [
     "unused-imports"
