@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "dev": "vite",
     "build": "tsc && vite build --base=/react-mangosteen-1-preview/",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.{ts,js,tsx,jsx}\"",
+    "lint:fix": "npm run lint -- \"--fix\""
   },
   "dependencies": {
     "@react-spring/web": "9.5.5",
@@ -36,5 +36,8 @@
     "unocss": "0.45.30",
     "vite": "3.1.0",
     "vite-plugin-mock": "2.9.6"
+  },
+  "lint-staged": {
+    "*{.ts,.tsx}": ["npm run lint:fix", "git add"]
   }
 }
