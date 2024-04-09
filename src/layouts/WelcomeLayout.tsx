@@ -19,7 +19,7 @@ export const WelcomeLayout: React.FC = () => {
   map.current[location.pathname] = outlet
   const [extraStyle, setExtraStyle] = useState<{ position: 'relative' | 'absolute' }>({ position: 'relative' })
   const mainRef = useRef(null)
-  const { direction } = useSwipe(mainRef, { onTouchStart: e => e.preventDefault() })
+  const { direction } = useSwipe(mainRef)
   const animating = useRef(false) // 手指是否在屏幕上滑动
   const nav = useNavigate();
   const { setHasReadWelcomes } = useLocalStore()

@@ -7,32 +7,41 @@ interface Config {
   onTouchEnd?: (e: TouchEvent) => void
 }
 export function useSwipe(elementRef: MutableRefObject<HTMLElement | null>, config?: Config) {
-  const [direction, setDirection] = useState<'' | 'right' | 'left'>('')
+  const [direction, setDirection] = useState<'' | 'left' | 'right' | 'up' | 'down'>('')
   const x = useRef(-1); // 为什么默认值是-1呢，因为0是有意义的，0是屏幕的最左边！！
+  const y = useRef(-1)
   const onTouchStart = (e: TouchEvent) => {
     config?.onTouchStart?.(e)
-    console.log('start')
     x.current = e.touches[0].clientX
+    y.current = e.touches[0].clientY
   }
   const onTouchMove = (e: TouchEvent) => {
     config?.onTouchMove?.(e)
-    console.log('move')
-    const newX = e.touches[0].clientX;
-    const d = newX - x.current;
-    // 当滑动距离绝对值小于3px时，忽略滑动不计
-    if (Math.abs(d) < 3) {
-      setDirection('')
-    }
-    else if (d > 0) {
-      setDirection('right')
-    }
-    else {
-      setDirection('left')
+    const newX = e.touches[0].clientX
+    const newY = e.touches[0].clientY
+    const dx = newX - x.current
+    const dy = newY - y.current
+    if (Math.abs(dx) > Math.abs(dy)) {
+      // 当滑动距离绝对值小于3px时，忽略滑动不计
+      if (Math.abs(dx) < 3) {
+        setDirection('')
+      } else if (dx > 0) {
+        setDirection('right')
+      } else {
+        setDirection('left')
+      }
+    } else {
+      if (Math.abs(dy) < 3) {
+        setDirection('')
+      } else if (dy > 0) {
+        setDirection('down')
+      } else {
+        setDirection('up')
+      }
     }
   }
   const onTouchEnd = (e: TouchEvent) => {
     config?.onTouchEnd?.(e)
-    console.log('end')
     setDirection('')
   }
 
