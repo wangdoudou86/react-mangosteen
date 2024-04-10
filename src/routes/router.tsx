@@ -9,7 +9,7 @@ import { NotFoundPage } from '../pages/NotFoundPage'
 import { Home } from '../pages/Home'
 import { ItemsPage } from '../pages/ItemsPage/ItemsPage'
 import { SignInPage } from '../pages/SignInPage'
-import { ItemsNewPage } from '../pages/ItemsNewPage'
+import { ItemsNewPage } from '../pages/ItemsNewPage/ItemsNewPage'
 
 export const router = createBrowserRouter([
   {
