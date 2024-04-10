@@ -17,8 +17,8 @@ type Props<T> = {
 export function Tabs<T extends string>(props: Props<T>) {
   const { tabItems, value, onChange, className, classPrefix } = props
   return (
-    <div className={cs(className, classPrefix)}>
-      <ol flex text-white children-px-24px children-py-12px bg="[rgb(143,76,215)]"
+    <div className={cs(className, classPrefix)} flex flex-col>
+      <ol flex text-white children-px-24px children-py-12px bg="[rgb(143,76,215)]" grow-0 shrink-0
         className={classPrefix ? `${classPrefix}-menu` : ''}>
         {tabItems.map(item =>
           <li key={item.key} className={
@@ -31,7 +31,7 @@ export function Tabs<T extends string>(props: Props<T>) {
             {item.text}
           </li>)}
       </ol>
-      <div className={classPrefix ? `${classPrefix}-pane` : ''}>
+      <div grow-1 shrink-1 overflow-auto className={classPrefix ? `${classPrefix}-pane` : ''}>
         {tabItems.filter(item => item.key === value)[0].element}
       </div>
     </div>
