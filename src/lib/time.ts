@@ -11,6 +11,10 @@ type Unit =
   | 'year' | 'years' | 'month' | 'months' | 'day' | 'days'
   | 'hour' | 'hours' | 'minute' | 'minutes' | 'second' | 'seconds'
   | 'ms'
+
+export function time(p?: number | string | Date) {
+  return new Time(p)
+}
 export class Time {
   date: Date
   constructor(p?: number | string | Date) {
