@@ -18,7 +18,8 @@
     "@typescript-eslint/brace-style": "off",
     "unused-imports/no-unused-imports": "off",
     "@typescript-eslint/no-unused-imports": "off",
-    "@typescript-eslint/consistent-type-definitions": "off"
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   },
   "plugins": [
     "unused-imports"
