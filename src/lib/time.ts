@@ -26,6 +26,11 @@ export class Time {
     return this.date.getTime()
   }
 
+  /** 获取月份的最后一个日期 */
+  get lastDayOfMonth() {
+    return new Time(new Date(this.year, this.month - 1 + 1, 0))
+  }
+
   get parts(): Parts {
     const year = this.date.getFullYear()
     const month = this.date.getMonth() + 1

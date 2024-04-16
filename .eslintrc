@@ -19,7 +19,8 @@
     "unused-imports/no-unused-imports": "off",
     "@typescript-eslint/no-unused-imports": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "arrow-parens": "off"
   },
   "plugins": [
     "unused-imports"
