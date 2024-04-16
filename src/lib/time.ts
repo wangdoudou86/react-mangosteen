@@ -21,6 +21,11 @@ export class Time {
     this.date = p ? new Date(p) : new Date()
   }
 
+  /** 获取时间戳 */
+  get timestamp() {
+    return this.date.getTime()
+  }
+
   get parts(): Parts {
     const year = this.date.getFullYear()
     const month = this.date.getMonth() + 1
