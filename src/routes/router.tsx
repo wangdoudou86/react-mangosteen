@@ -10,7 +10,7 @@ import { Home } from '../pages/Home'
 import { ItemsPage } from '../pages/ItemsPage/ItemsPage'
 import { SignInPage } from '../pages/SignInPage'
 import { ItemsNewPage } from '../pages/ItemsNewPage/ItemsNewPage'
-import { TagsNewPage } from '../pages/TagsNewPage'
+import { TagsNewPage } from '../pages/TagsNewPage/TagsNewPage'
 
 export const router = createBrowserRouter([
   {
