@@ -35,7 +35,7 @@ export const Input: React.FC<Props> = (props) => {
       <div flex flex-col gap-y-8px>
         <span text-18px>{label}</span>
         {renderInput()}
-        <span text-red text-12px>{error || ' '}</span>
+        <span text-red text-12px>{error || '　'}</span>
       </div>
     </>
   )
